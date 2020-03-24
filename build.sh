@@ -1,9 +1,5 @@
 #!/bin/bash
 
-TitleCase() {
-    sed 's/.*/\L&/; s/[a-z]*/\u&/g' <<<"$1"    
-}
-
 PROMPTSDIR=prompts
 
 INPUT=$PROMPTSDIR/all_prompts.csv
@@ -21,9 +17,9 @@ do
         touch prompts/weeks
     fi
 
-    if ! grep -Fxq "$(TitleCase $category)" "prompts/categories"
+    if ! grep -Fxq "$category" "prompts/categories"
     then
-        echo $(TitleCase $category) >> prompts/categories
+        echo $category >> prompts/categories
     fi
 
     if ! grep -Fxq "$week" "prompts/weeks"
